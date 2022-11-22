@@ -12,6 +12,10 @@ module.exports = class Response {
     this.message.push(message)
   }
 
+  setError (errorArray) {
+    if (Array.isArray(errorArray)) { this.error = errorArray }
+  }
+
   addError (error) {
     this.error.push(error)
   }

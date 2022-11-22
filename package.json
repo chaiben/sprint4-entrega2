@@ -16,7 +16,8 @@
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.18.2",
-    "express-fileupload": "^1.4.0"
+    "express-fileupload": "^1.4.0",
+    "express-validator": "^6.14.2"
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"

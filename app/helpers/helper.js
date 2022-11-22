@@ -6,7 +6,9 @@ const MESSAGES = {
   NOTFOUND: 'Resource not found',
   ERROR404: 'Not found - 404',
   POSTNAMEREQUIRED: 'You must have a key named "name" at the body of this request',
-  INVALIDREQUEST: 'Invalid Request'
+  INVALIDREQUEST: 'Invalid Request',
+  USERNAMEREQUIRED: 'Username is required',
+  PASSWORDREQUIRED: 'Password is required'
 }
 
 module.exports = MESSAGES
