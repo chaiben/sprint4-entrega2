@@ -16,6 +16,10 @@ module.exports = class Response {
     this.error.push(error)
   }
 
+  setError (error) {
+    this.error = error
+  }
+
   setPayload (payload) {
     this.payload = payload
   }

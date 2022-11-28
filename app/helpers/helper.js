@@ -5,8 +5,10 @@ const MESSAGES = {
   INVALIDIMGFORMAT: 'Invalid file format. Please, upload only jpg/jpeg, png or gif files',
   NOTFOUND: 'Resource not found',
   ERROR404: 'Not found - 404',
-  POSTNAMEREQUIRED: 'You must have a key named "name" at the body of this request',
-  INVALIDREQUEST: 'Invalid Request'
+  POSTNAMEREQUIRED: 'Username is required',
+  POSTPASSWORDREQUIRED: 'Password is required',
+  INVALIDREQUEST: 'Invalid Request',
+  VALIDATIONERROR: 'Validation error'
 }
 
 module.exports = MESSAGES

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
 const apiRouter = require('./routes/route')
 const cors = require('cors')
+const middleware = require('./middlewares/middleware')
 
 const app = express()
 
@@ -15,6 +16,6 @@ app.use(fileUpload({
   createParentPath: true
 }))
 
-app.use('/', apiRouter)
+app.use('/', middleware.addNoCacheHeader, apiRouter)
 
 app.listen(3000)
