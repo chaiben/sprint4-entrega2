@@ -478,6 +478,154 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Pokemon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Receive Pickachu data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload.name).to.eql(\"pikachu\");",
+							"    pm.expect(jsonData.payload.weight).to.eql(60);",
+							"    pm.expect(jsonData.payload.height).to.eql(4);",
+							"    pm.expect(jsonData.payload.id).to.eql(25);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pokemon/25",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pokemon",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon option 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Receive Pickachu data\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload.name).to.eql(\"pikachu\");",
+							"    pm.expect(jsonData.payload.weight).to.eql(60);",
+							"    pm.expect(jsonData.payload.height).to.eql(4);",
+							"    pm.expect(jsonData.payload.id).to.eql(25);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pokemon/25",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pokemon",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon no ID or name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"pm.test(\"Missing pokemon \\\"id\\\"\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload.message[0]).to.eql(\"Missing pokemon \\\"id\\\"\");",
+							"    pm.expect(jsonData.payload.error[0]).to.eql(\"Invalid Request\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pokemon/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pokemon",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon invalid ID number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Missing pokemon \\\"id\\\"\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message[0]).to.eql(\"Check if you entered a valid value\");",
+							"    pm.expect(jsonData.error[0]).to.eql(\"Bad response from server\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/pokemon/2500000",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"pokemon",
+						"2500000"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

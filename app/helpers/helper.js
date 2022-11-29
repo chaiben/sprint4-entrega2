@@ -12,7 +12,8 @@ const MESSAGES = {
   BADRESPONSE: 'Bad response from server',
   SUCCESS: 'Success',
   CHECKINFO: 'Check if you entered a valid value',
-  WRONGUSER: 'Wrong user or password'
+  WRONGUSER: 'Wrong user or password',
+  MISSINGPOKEID: 'Missing pokemon "id"'
 }
 
 module.exports = MESSAGES
