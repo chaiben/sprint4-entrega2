@@ -5,6 +5,29 @@
 3. Install dependencies `npm install`
 4. Run `npm run start` (for development you can use `npm run dev` instead)
 
+## How to run the automatic tests
+1. Configure environments, two option:
+    1. You can import from [this file](./__tests__/Local.postman_environment.json)
+    1. Copy manually the values for host and port.  
+    ![Configure environments](./assets/environments.jpg)
+2. Open POSTMAN
+3. Import the project collection located at [this file](./__tests__/Sprint4%20-%20Entrega%201.postman_collection.json)
+4. Open preferences - marked with number "1"
+![Open preferences](./assets/open-pref.jpg)
+5. Add the test folder as a working directory (see number 2 below)
+![Working directory](./assets/working-directory.jpg)
+6. Click at the 3 dots "Run collection"
+![3 dots - Run collection](./assets/running-collection.jpg)
+7. Choose "Local" enviroment and click "Run sprint4"
+![Run collection](./assets/run.jpg)
+8. At the tab "All tests" you will able to see all tests results.
+![Test results](./assets/check-tests.jpg)
+
+## Test manually
+
+If you want to test manually, you can use username = 'chaiben' and password = '123456' as a valid loggin credentials for the "time" enpoint.
+![Login credentials](./assets/user-password.jpg)
+
 ## Folder structure
 ```
 .

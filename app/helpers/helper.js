@@ -11,7 +11,8 @@ const MESSAGES = {
   VALIDATIONERROR: 'Validation error',
   BADRESPONSE: 'Bad response from server',
   SUCCESS: 'Success',
-  CHECKINFO: 'Check if you entered a valid value'
+  CHECKINFO: 'Check if you entered a valid value',
+  WRONGUSER: 'Wrong user or password'
 }
 
 module.exports = MESSAGES

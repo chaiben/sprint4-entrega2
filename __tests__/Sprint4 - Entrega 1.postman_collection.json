@@ -15,6 +15,22 @@
 						"exec": [
 							"pm.test(\"Status code is 404\", function () {",
 							"    pm.response.to.have.status(404);",
+							"});",
+							"pm.test(\"Not found page status is false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(false);",
+							"});",
+							"pm.test(\"Not found page error is Not Found 404\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error[0]).to.eql('Not found - 404');",
+							"});",
+							"pm.test(\"Not found page payload is null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload).to.eql(null);",
+							"});",
+							"pm.test(\"Not found page message is Resource not found\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message[0]).to.eql('Resource not found');",
 							"});"
 						],
 						"type": "text/javascript"
@@ -48,8 +64,8 @@
 							"});",
 							"pm.test(\"Test name and age\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.nombre).to.eql(\"Marçal\");",
-							"    pm.expect(jsonData.age).to.eql(43);",
+							"    pm.expect(jsonData.payload.name).to.eql(\"Marçal\");",
+							"    pm.expect(jsonData.payload.age).to.eql(43);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -83,9 +99,9 @@
 							"});",
 							"pm.test(\"Upload jpg\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    //pm.expect(jsonData.status).to.eql(true);",
-							"    pm.expect(jsonData.message).to.eql(\"File is uploaded\");",
-							"    //pm.expect(jsonData.data.mimetype).to.eql(\"image/jpeg\");",
+							"    pm.expect(jsonData.status).to.eql(true);",
+							"    pm.expect(jsonData.message[0]).to.eql(\"File uploaded\");",
+							"    pm.expect(jsonData.payload.mimetype).to.eql(\"image/jpeg\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -101,7 +117,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/Users/chaiben/Documents/Node Apps/node-sprint4/Entrega4_1/__tests__/test.jpeg"
+							"src": "test.jpeg"
 						}
 					]
 				},
@@ -127,11 +143,11 @@
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
-							"pm.test(\"Upload png\", function () {",
+							"pm.test(\"Upload jpg\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.status).to.eql(true);",
-							"    pm.expect(jsonData.message).to.eql(\"File is uploaded\");",
-							"    pm.expect(jsonData.data.mimetype).to.eql(\"image/png\");",
+							"    pm.expect(jsonData.message[0]).to.eql(\"File uploaded\");",
+							"    pm.expect(jsonData.payload.mimetype).to.eql(\"image/png\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -147,7 +163,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/Users/chaiben/Documents/Node Apps/node-sprint4/Entrega4_1/__tests__/test.png"
+							"src": "test.png"
 						}
 					]
 				},
@@ -173,11 +189,11 @@
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
-							"pm.test(\"Upload gif\", function () {",
+							"pm.test(\"Upload jpg\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.status).to.eql(true);",
-							"    pm.expect(jsonData.message).to.eql(\"File is uploaded\");",
-							"    pm.expect(jsonData.data.mimetype).to.eql(\"image/gif\");",
+							"    pm.expect(jsonData.message[0]).to.eql(\"File uploaded\");",
+							"    pm.expect(jsonData.payload.mimetype).to.eql(\"image/gif\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -193,7 +209,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/Users/chaiben/Documents/Node Apps/node-sprint4/Entrega4_1/__tests__/test.gif"
+							"src": "test.gif"
 						}
 					]
 				},
@@ -222,7 +238,7 @@
 							"pm.test(\"Uplaod - Missing file\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.status).to.eql(false);",
-							"    pm.expect(jsonData.message).to.eql(\"No file uploaded\");",
+							"    pm.expect(jsonData.message[0]).to.eql(\"Please, add a file to the key \\\"file\\\"\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -267,7 +283,7 @@
 							"pm.test(\"Upload txt\", function () {",
 							"    var jsonData = pm.response.json();",
 							"    pm.expect(jsonData.status).to.eql(false);",
-							"    pm.expect(jsonData.message).to.eql(\"Invalid file format. Please, upload only jpg/jpeg, png or gif files\");",
+							"    pm.expect(jsonData.message[0]).to.eql(\"Invalid file format. Please, upload only jpg/jpeg, png or gif files\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -283,7 +299,7 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/Users/chaiben/Documents/Node Apps/node-sprint4/Entrega4_1/__tests__/test.txt"
+							"src": "test.txt"
 						}
 					]
 				},
@@ -294,6 +310,170 @@
 					],
 					"path": [
 						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Time - OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Status is true\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(true);",
+							"});",
+							"pm.test(\"Error is empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error).is.empty",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "chaiben",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/time",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Time - OK Wrong user or password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"pm.test(\"Payload is empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload).eq(null)",
+							"});",
+							"pm.test(\"Status is false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(false);",
+							"});",
+							"pm.test(\"Wrong user or password\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Wrong user or password\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "chai",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/time",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"time"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Time - missing name field",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"pm.test(\"Payload is empty\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.payload).eq(null)",
+							"});",
+							"pm.test(\"Status is false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.status).to.eql(false);",
+							"});",
+							"pm.test(\"Username is required\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Username is required\");",
+							"});",
+							"pm.test(\"Password is required\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Password is required\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Marçal",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/time",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"time"
 					]
 				}
 			},
