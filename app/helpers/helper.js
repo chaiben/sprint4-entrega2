@@ -8,7 +8,10 @@ const MESSAGES = {
   POSTNAMEREQUIRED: 'Username is required',
   POSTPASSWORDREQUIRED: 'Password is required',
   INVALIDREQUEST: 'Invalid Request',
-  VALIDATIONERROR: 'Validation error'
+  VALIDATIONERROR: 'Validation error',
+  BADRESPONSE: 'Bad response from server',
+  SUCCESS: 'Success',
+  CHECKINFO: 'Check if you entered a valid value'
 }
 
 module.exports = MESSAGES
