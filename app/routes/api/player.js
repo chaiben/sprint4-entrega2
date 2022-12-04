@@ -5,7 +5,6 @@ const MESSAGES = require('../../helpers/helper')
 const Response = require('../../models/Response')
 
 router.get('/', async (req, res) => {
-  console.log(req.usuarioId)
   const players = await Player.findAll()
   res.json(players)
 })
@@ -30,7 +29,6 @@ router.put('/:player_id', async (req, res) => {
     const result = await Player.update(req.body, {
       where: { player_id: req.params.player_id }
     })
-    console.log('Put result', result)
     if (result[0]) {
       response.addMessage(MESSAGES.PLAYERUPDATED)
       res.status(200).json(response)
