@@ -1,3 +1,6 @@
+const MESSAGES = require('../helpers/helper')
+const Dice = require('./Dice')
+
 module.exports = (sequelize, type) => {
   return sequelize.define('match', {
     match_id: {
@@ -12,7 +15,20 @@ module.exports = (sequelize, type) => {
         key: 'player_id'
       }
     },
-    value: type.INTEGER,
-    result: type.BOOLEAN
+    value: {
+      type: type.INTEGER,
+      set () {
+        const total = new Dice().rollDices(2)
+        console.log('dice value: ', total)
+        this.setDataValue('value', total)
+        this.setDataValue('result', total === 7 ? 1 : 0)
+      }
+    },
+    result: {
+      type: type.BOOLEAN,
+      get () {
+        return this.getDataValue('result') ? MESSAGES.WIN : MESSAGES.LOSE
+      }
+    }
   })
 }
