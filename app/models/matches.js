@@ -19,7 +19,6 @@ module.exports = (sequelize, type) => {
       type: type.INTEGER,
       set () {
         const total = new Dice().rollDices(2)
-        console.log('dice value: ', total)
         this.setDataValue('value', total)
         this.setDataValue('result', total === 7 ? 1 : 0)
       }
