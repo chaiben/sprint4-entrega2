@@ -1,3 +1,5 @@
+const MESSAGES = require('../helpers/helper')
+
 module.exports = (sequelize, type) => {
   return sequelize.define('player', {
     player_id: {
@@ -13,7 +15,7 @@ module.exports = (sequelize, type) => {
         (typeof value === 'string' && value.trim) ? this.setDataValue('username', value.trim()) : this.setDataValue('username', null)
       },
       get () {
-        return this.getDataValue('username') ? this.getDataValue('username') : 'Anonymous'
+        return this.getDataValue('username') ? this.getDataValue('username') : MESSAGES.ANONYMOUS
       }
     },
     average: {

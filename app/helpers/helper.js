@@ -1,4 +1,5 @@
 const MESSAGES = {
+  ANONYMOUS: 'Anonymous',
   PLAYERCREATED: 'Player created',
   PLAYERUPDATED: 'Player updated',
   PLAYERDELETED: 'Player deleted',
