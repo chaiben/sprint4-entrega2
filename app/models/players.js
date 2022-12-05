@@ -10,10 +10,16 @@ module.exports = (sequelize, type) => {
       defaultValue: null,
       unique: true,
       set (value) {
-        (value.trim()) ? this.setDataValue('username', value.trim()) : this.setDataValue('username', null)
+        (typeof value === 'string' && value.trim) ? this.setDataValue('username', value.trim()) : this.setDataValue('username', null)
       },
       get () {
         return this.getDataValue('username') ? this.getDataValue('username') : 'Anonymous'
+      }
+    },
+    average: {
+      type: type.VIRTUAL,
+      set (value) {
+        this.setDataValue('average', value)
       }
     }
   })
