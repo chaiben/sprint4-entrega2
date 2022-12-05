@@ -20,4 +20,24 @@ router.post('/:player_id', async (req, res) => {
   }
 })
 
+router.delete('/:player_id', async (req, res) => {
+  const response = new Response()
+  try {
+    const result = await Match.destroy({
+      where: { player_id: req.params.player_id }
+    })
+    if (result) {
+      response.addMessage(MESSAGES.MATCHESRDELETED)
+      res.status(200).json(response)
+    } else {
+      response.addMessage(MESSAGES.MATCHESNOTFOUND)
+      res.status(200).json(response)
+    }
+  } catch (err) {
+    response.setStatus(false)
+    response.addError(err.errors[0].message)
+    res.status(400).json(response)
+  }
+})
+
 module.exports = router

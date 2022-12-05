@@ -3,6 +3,8 @@ const MESSAGES = {
   PLAYERUPDATED: 'Player updated',
   PLAYERDELETED: 'Player deleted',
   PLAYERNOTFOUND: 'Player not found',
+  MATCHESRDELETED: 'Matches deleted',
+  MATCHESNOTFOUND: 'Matches not found',
   PLAYERSNOTFOUND: 'No players were found',
   NOTFOUND: 'Resource not found',
   ERROR404: 'Not found - 404',
@@ -11,7 +13,7 @@ const MESSAGES = {
   WELLPLAYED: 'Well played',
   SORRY: 'Sorry, not luck this time',
   MISSINGPLAYER: 'Please, add a valid player ID',
-  ALLPLAYERSAVG: 'All players with their average of win'
+  ALLPLAYERSAVG: 'All players and their win average'
 }
 
 module.exports = MESSAGES

@@ -9,17 +9,17 @@ router.get('/', async (req, res) => {
   const response = new Response()
   try {
     const results = await sequelize.query('SELECT p.player_id, username, p.createdAt, p.updatedAt, AVG(result)*100 "average" FROM players p LEFT JOIN matches m USING (player_id) GROUP BY p.player_id', { type: QueryTypes.SELECT })
-    if (results) {
-      response.message(MESSAGES.ALLPLAYERSAVG)
+    if (results.length > 0) {
+      response.addMessage(MESSAGES.ALLPLAYERSAVG)
       response.setPayload(await results.map(result => new Player(result)))
       res.json(response)
     } else {
-      response.message(MESSAGES.PLAYERSNOTFOUND)
+      response.addMessage(MESSAGES.PLAYERSNOTFOUND)
       res.json(response)
     }
   } catch (err) {
     response.setStatus(false)
-    response.setError(err)
+    response.addError(err.message)
     res.status(400).json(response)
   }
 })
