@@ -15,7 +15,8 @@ const MESSAGES = {
   WELLPLAYED: 'Well played',
   SORRY: 'Sorry, not luck this time',
   MISSINGPLAYER: 'Please, add a valid player ID',
-  ALLPLAYERSAVG: 'All players and their win average'
+  ALLPLAYERSAVG: 'All players and their win average',
+  RANKING: 'Ranking'
 }
 
 module.exports = MESSAGES
