@@ -11,8 +11,8 @@ module.exports = (sequelize, type) => {
       type: type.STRING,
       defaultValue: null,
       unique: true,
-      set (value) {
-        (typeof value === 'string' && value.trim) ? this.setDataValue('username', value.trim()) : this.setDataValue('username', null)
+      set (username) {
+        (typeof username === 'string' && username.trim()) ? this.setDataValue('username', username.trim()) : this.setDataValue('username', null)
       },
       get () {
         return this.getDataValue('username') ? this.getDataValue('username') : MESSAGES.ANONYMOUS

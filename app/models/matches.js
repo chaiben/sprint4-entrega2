@@ -13,16 +13,17 @@ module.exports = (sequelize, type) => {
       references: {
         model: 'players',
         key: 'player_id'
-      }
-    },
-    value: {
-      type: type.INTEGER,
-      set () {
-        const total = new Dice().rollDices(2)
-        this.setDataValue('value', total)
+      },
+      set (playerId) {
+        this.setDataValue('player_id', playerId)
+        this.setDataValue('dice1', new Dice().roll())
+        this.setDataValue('dice2', new Dice().roll())
+        const total = this.getDataValue('dice1') + this.getDataValue('dice2')
         this.setDataValue('result', total === 7 ? 1 : 0)
       }
     },
+    dice1: type.INTEGER,
+    dice2: type.INTEGER,
     result: {
       type: type.BOOLEAN,
       get () {
