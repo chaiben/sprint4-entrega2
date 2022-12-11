@@ -35,7 +35,7 @@ router.post('/:player_id', async (req, res) => {
     if (err.name === 'SequelizeForeignKeyConstraintError') { response.addError(MESSAGES.MISSINGPLAYER) } else {
       response.addError(err)
     }
-    res.status(400).json(response)
+    res.status(422).json(response)
   }
 })
 

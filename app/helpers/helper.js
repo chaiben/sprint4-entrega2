@@ -18,7 +18,12 @@ const MESSAGES = {
   ALLPLAYERSAVG: 'All players and their win average',
   RANKING: 'Ranking',
   WINNER: 'Winner',
-  LOSER: 'Loser'
+  LOSER: 'Loser',
+  USERREQUIRED: 'Username is required',
+  PASSWORDREQUIRED: 'Password is required',
+  WRONGUSERORPASS: 'Wrong username or password',
+  USERREGISTERED: 'User registered',
+  MISSINGUSERNAMEORPASS: 'Missing username or password'
 }
 
 module.exports = MESSAGES
