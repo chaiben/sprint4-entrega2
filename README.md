@@ -21,6 +21,7 @@ Now you are ready to consum the API. Use your favorite API test, like POSTMAN
     1. Copy manually the values for host and port.  
     ![Configure environments](./assets/environments.jpg)
 3. Import the project collection located at [this file](./__tests__/Sprint4%20-%20Entrega%201.postman_collection.json)
+    - WARNING: The collection pre-script add the "user-token" header to all collection.
 
 ## Run Automatic tests with POSTMAN
 
@@ -55,13 +56,15 @@ Now you are ready to consum the API. Use your favorite API test, like POSTMAN
 │   │   ├── NotFound.js
 │   │   ├── Response.js
 │   │   ├── matches.js
-│   │   └── players.js
+│   │   ├── players.js
+│   │   └── users.js
 │   └── routes
 │       ├── api
 │       │   ├── games.js
 │       │   ├── notfound.js
 │       │   ├── players.js
-│       │   └── ranking.js
+│       │   ├── ranking.js
+│       │   └── users.js
 │       └── route.js
 ├── assets
 │   ├── check-tests.jpg
