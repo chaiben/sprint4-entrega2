@@ -52,6 +52,99 @@
 			"response": []
 		},
 		{
+			"name": "Register an admin user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "chaiben",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/users/register/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if(jsonData.payload?.success) {",
+							"    pm.collectionVariables.set(\"token\", jsonData.payload.success);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "chaiben",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/users/login/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Anonymous Player: username is empty",
 			"event": [
 				{
@@ -165,8 +258,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
+							"pm.test(\"Status code is 422\", function () {",
+							"    pm.response.to.have.status(422);",
 							"});",
 							"pm.test(\"Check status is false\", function () {",
 							"    var jsonData = pm.response.json();",
@@ -733,7 +826,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"pm.request.headers.add({ key: 'user-token', value: pm.collectionVariables.get(\"token\") });"
 				]
 			}
 		},
@@ -757,6 +850,10 @@
 			"key": "username",
 			"value": "test",
 			"type": "default"
+		},
+		{
+			"key": "token",
+			"value": ""
 		}
 	]
 }
