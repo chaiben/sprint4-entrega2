@@ -78,6 +78,7 @@ Now you are ready to consum the API. Use your favorite API test, like POSTMAN
 └── package.json
 
 ```
+
 ## Ref
 1. [Sequelize - Getting Started](https://sequelize.org/docs/v6/getting-started/) 
 
