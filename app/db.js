@@ -1,12 +1,11 @@
 const Sequelize = require('sequelize')
-
+require('dotenv').config()
 const PlayerModel = require('./models/players')
 const MatchModel = require('./models/matches')
 const UserModel = require('./models/users')
-const DB_CONF = require('./config/config')
 
-const sequelize = new Sequelize(DB_CONF.DATABASE, DB_CONF.USER, DB_CONF.PASSWORD, {
-  host: DB_CONF.HOST,
+const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
+  host: process.env.DATABASE_HOST,
   dialect: 'mysql'
 })
 

@@ -5,9 +5,13 @@ Dice game. You can create a player and trow 2 dices. If the sum of both dices ar
 
 1. Clone this repo
 2. Enter at the project folder `cd sprint4-entrega2`
-3. Open docker application (if you do not have installed, download it [from here](https://www.docker.com/))
-4. Enter the docker folder `cd docker`
-5. Run `docker compose up -d`
+3. Database, two options:
+    - Docker:
+        1. Open docker application (if you do not have installed, download it [from here](https://www.docker.com/))
+        2. Enter the docker folder `cd docker`
+        3. Run `docker compose up -d`
+    - Your local database:
+        1. Edit the `.env` file to fit your database configuration.
 6. Go to the root project folder `cd .. `
 7. Install dependencies `npm install`
 8. Run `npm run start` (for development you can use `npm run dev` instead)
